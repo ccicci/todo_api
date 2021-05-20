@@ -4,7 +4,8 @@ from . import views
 app_name = 'todos'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('todos/', views.TodoView.as_view()),
-    path('todos/<int:todo_id>', views.TodoView.as_view()),
+    path('', views.TodoView.as_view()),
+    path('<int:todo_id>', views.TodoView.as_view()),
+    path('<int:todo_id>/comments/', views.CommentView.as_view()),
+    path('<int:todo_id>/comments/<int:comment_id>', views.CommentView.as_view()),
 ]
