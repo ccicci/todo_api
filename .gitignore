@@ -1,0 +1,43 @@
+# execute files
+*.dll
+*.exe
+*.o
+*.so
+*.com
+*.class
+*.log
+logs/
+
+# document files
+*.xlsx
+*.xls
+*.pdf
+*.docs
+*.ppt
+*.pptx
+
+# package files
+*.dmg
+*.iso
+*.tar
+*.zip
+*.gz
+
+# system files
+.Trashes
+.Thumbs.db
+.ehthumbs.db
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# django
+*.pyc
+__pycache__
+comento_env
+db.sqlite3
+.DS_Store
