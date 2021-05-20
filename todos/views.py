@@ -12,13 +12,13 @@ def index(request):
 # Todo
 class TodoView(APIView):
     def get(self, request,  **kwargs):
-            if kwargs.get('id') is None:
+            if kwargs.get('todo_id') is None:
                 todo_queryset = Todo.objects.all()
                 todo_queryset_serializer = TodoSerializer(todo_queryset, many=True)
                 return Response(todo_queryset_serializer.data, status=status.HTTP_200_OK)
             else:
-                todo_id = kwargs.get('id')
-                todo_serializer = TodoSerializer(Todo.objects.get(id=id))
+                todo_id = kwargs.get('todo_id')
+                todo_serializer = TodoSerializer(Todo.objects.get(todo_id=todo_id))
                 return Response(todo_serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -35,7 +35,7 @@ class TodoView(APIView):
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             todo_id = kwargs.get('todo_id')
-            todo_object = Todo.objects.get(id=todo_id)
+            todo_object = Todo.objects.get(todo_id=todo_id)
  
             update_todo_serializer = TodoSerializer(todo_object, data=request.data)
             if update_todo_serializer.is_valid():
@@ -49,7 +49,7 @@ class TodoView(APIView):
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             todo_id = kwargs.get('todo_id')
-            todo_object = Todo.objects.get(id=todo_id)
+            todo_object = Todo.objects.get(todo_id=todo_id)
             todo_object.delete()
             return Response("delete completed", status=status.HTTP_200_OK)
  
