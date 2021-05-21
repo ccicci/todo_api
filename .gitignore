@@ -41,3 +41,4 @@ __pycache__
 comento_env
 db.sqlite3
 .DS_Store
+secret.json

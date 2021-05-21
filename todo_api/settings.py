@@ -2,7 +2,22 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-chqts9q%jf0&peoiye3jjx@i&06!iub5w)f#emrexdp8ixfb=2'
+
+import json
+from django.core.exceptions import ImproperlyConfigured
+
+with open("todo_api/secret.json") as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = f"Set the {setting} enviroment variable"
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
 DEBUG = True
 ALLOWED_HOSTS = []
 
